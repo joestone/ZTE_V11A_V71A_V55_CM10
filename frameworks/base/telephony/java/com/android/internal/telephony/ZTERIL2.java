@@ -61,7 +61,7 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
     public ZTERIL2(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
         mSetPreferredNetworkType = -1;
-//        mQANElements = 5;
+        mQANElements = 5;
     }
 
     @Override public void
@@ -219,12 +219,13 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
             dataCall.cid = p.readInt();
             dataCall.active = p.readInt();
             dataCall.type = p.readString();
-            String unknown = p.readString();//possible ifname
+            dataCall.ifname = p.readString();
+			//String unknown = p.readString();//possible ifname
 			String addresses = p.readString();
 			String dnses = p.readString();
 			String gateways = p.readString();
 						
-			dataCall.ifname = "rmnet0" ;
+			//dataCall.ifname = "rmnet0" ;
 			
                     
             if (!TextUtils.isEmpty(addresses)) {
@@ -245,16 +246,38 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         return dataCall;
     }
 
+	@Override
+    protected Object
+    responseDataCallList(Parcel p) {
+        ArrayList<DataCallState> response;
+
+        int ver = p.readInt();
+        int num = p.readInt();
+        riljLog("responseDataCallList ver=" + ver + " num=" + num);
+
+        response = new ArrayList<DataCallState>(num);
+        for (int i = 0; i < num; i++) {
+            response.add(getDataCallState(p, ver));
+        }
+
+        return response;
+    }
+
+	
     @Override
     protected Object
     responseSetupDataCall(Parcel p) {
-        DataCallState dataCall;
+        
 		int ver = p.readInt();
         int num = p.readInt();
-				
-        if (RILJ_LOGV) riljLog("responseSetupDataCall ver= " + ver + " num= " + num );
-		//DataCallState dataCall;
+		if (RILJ_LOGV) riljLog("responseSetupDataCall ver=" + ver + " num=" + num);
 
+		DataCallState dataCall;
+		
+				
+        //if (RILJ_LOGV) riljLog("responseSetupDataCall ver= " + ver + " num= " + num );
+		//DataCallState dataCall;
+		
 
         dataCall = new DataCallState();
 		dataCall.version = ver;
@@ -793,7 +816,7 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         send(rr);
     }
 
-    @Override
+/*    @Override
     protected Object
     responseOperatorInfos(Parcel p) {
         String strings[] = (String [])responseStrings(p);
@@ -817,6 +840,6 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         }
 
         return ret;
-    }
+    }*/
 
 }

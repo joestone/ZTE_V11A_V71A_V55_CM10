@@ -29,7 +29,7 @@ PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
 	persist.sys.use_dithering=0 \
 	ro.com.google.locationfeatures=1 \
 	mobiledata.interfaces = eth0,rmnet0
-#,u=n,v=a,o=v 
+
 # Provides overrides to configure the Dalvik heap for a standard tablet device.
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -197,12 +197,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
-	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
 	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 
+	
 # kcm keymaps
 PRODUCT_COPY_FILES += \
     device/zte/smarttab_common/proprietary/usr/keychars/Generic.kcm:system/usr/keylayout/Generic.kcm \
@@ -249,17 +250,17 @@ PRODUCT_COPY_FILES += \
 
 #Bluetooth setup
 PRODUCT_COPY_FILES += \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
 	device/zte/smarttab_common/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/audio.so:system/lib/bluez-plugin/audio.so \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/input.so:system/lib/bluez-plugin/input.so \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/network.so:system/lib/bluez-plugin/network.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluedroid.so:system/lib/libbluedroid.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluetooth.so:system/lib/libbluetooth.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluetoothd.so:system/lib/libbluetoothd.so \
 #	device/zte/smarttab_common/proprietary/lib/libdbus.so:system/lib/libdbus.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/audio.so:system/lib/bluez-plugin/audio.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/input.so:system/lib/bluez-plugin/input.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/network.so:system/lib/bluez-plugin/network.so \
 #	device/zte/smarttab_common/proprietary/bin/bluetoothd:system/bin/bluetoothd \
 #	device/zte/smarttab_common/proprietary/bin/hciattach:system/bin/hciattach \
 #	device/zte/smarttab_common/proprietary/bin/sdptool:system/bin/sdptool \
@@ -415,8 +416,13 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/bin/mm-qcamera-test:system/bin/mm-qcamera-test \
 	device/zte/smarttab_common/proprietary/bin/mm-mpo-enc-test:system/bin/mm-mpo-enc-test \
 	device/zte/smarttab_common/proprietary/bin/mm-qcamera-testsuite-client:system/bin/mm-qcamera-testsuite-client \
+#	device/zte/smarttab_common/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
+#   device/zte/smarttab_common/proprietary/lib/libcamera.so:system/lib/libcamera.so \
+#	device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so \
+#   device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:system/lib/hw/camera.msm8660.so \
 
-#wiperiface
+
+	#wiperiface
 PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so \
 	device/zte/smarttab_common/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
